@@ -1,0 +1,7 @@
+.gstack/
+
+# OS/editor noise
+.DS_Store
+Thumbs.db
+*.tmp
+*.log
