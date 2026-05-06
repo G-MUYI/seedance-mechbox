@@ -35,6 +35,14 @@ UI metadata file, follow this file first.
 - Produce the final usable Seedance prompt or content output unless the user asks
   for analysis, planning, or editing guidance.
 - Preserve the selected skill's output contract from its reference file.
+- Always output the full detailed prompt. Do not generate compact, short,
+  compressed, summary, or outline prompt variants, even if the user input
+  contains `--compact`, "短版", "紧凑版", "压缩版", or similar wording. Treat
+  those old switches as deprecated and continue with the full prompt structure.
+- Final Seedance prompts must be long enough for direct use: keep all required
+  sections, timeline beats, mechanical rules, material details, camera rules,
+  physical continuity, and key constraints. Do not collapse them into a brief
+  prompt or a bullet summary.
 - Prefer concrete visual nouns, physical transformation beats, camera motion,
   material details, lighting, and environment cues over abstract adjectives.
 - Keep one-shot mechanical transformation prompts coherent from opening state to

@@ -17,7 +17,10 @@ American heavy truck mechanical box workflow.
    and output length.
 3. Use the reference mapping and detailed specifications to build the final
    Seedance prompt.
-4. Read `references/full-prompts-01-06.md` only when the user asks for complete
+4. Always return the full detailed prompt. Do not produce compact, short,
+   compressed, summary, or outline prompt variants; treat `--compact` and short
+   version wording as deprecated.
+5. Read `references/full-prompts-01-06.md` only when the user asks for complete
    prompts, examples, or entries 01-06.
 
 ## References

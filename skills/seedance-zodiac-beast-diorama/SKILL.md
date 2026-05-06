@@ -17,8 +17,9 @@ zodiac beast miniature diorama generator.
    tone, output length, and any explicit Seedance constraints.
 3. Apply the reference mapping table, randomization rules, execution steps, and
    output contract.
-4. Return the final prompt directly. Use the full version by default unless the
-   user explicitly asks for a compact output.
+4. Return the final prompt directly. Always use the full detailed version; do
+   not produce compact, short, compressed, summary, or outline prompt variants.
+   Treat `--compact` and short version wording as deprecated.
 
 ## References
 

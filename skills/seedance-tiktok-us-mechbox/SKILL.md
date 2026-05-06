@@ -16,7 +16,10 @@ TikTok mechanical box content workflow.
 2. Parse the requested US content angle, state or series, hook style, audience,
    caption needs, and Seedance prompt needs.
 3. Follow the strict output contract in the reference.
-4. Read `references/states-full-prompts-01-05.md` only when the user asks for
+4. Always keep the Seedance Prompt as the full detailed prompt. Do not produce
+   compact, short, compressed, summary, or outline prompt variants; treat
+   `--compact` and short version wording as deprecated.
+5. Read `references/states-full-prompts-01-05.md` only when the user asks for
    the complete state examples or entries 01-05.
 
 ## References

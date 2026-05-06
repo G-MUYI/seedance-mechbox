@@ -23,7 +23,7 @@
 
 ## 参数
 
-`/tk-mechbox-us [系列] [目标] [--compact] [--caption-only] [--prompt-only] [--15s]`
+`/tk-mechbox-us [系列] [目标] [--caption-only] [--prompt-only] [--15s]`
 
 - **不传参** → 从推荐系列中随机选一个高传播目标，输出完整 TikTok 内容包。
 - **系列参数**：
@@ -34,7 +34,7 @@
   - `comment` / `top-comment` → 评论区点名主题
   - `car-culture` → 肌肉车、越野、皮卡、drag racer 等美国车文化主题
 - **目标参数** → 具体州名、星座、物品或目标物，如 `Texas`、`Scorpio`、`coffee cup`、`toolbox`、`monster truck`。
-- **`--compact`** → 输出短版 Seedance 提示词，保留镜头、时间轴、五拍节奏、质量守恒和关键限制。
+- **`--compact` / 短版 / 紧凑版 / 压缩版** → 已废弃，不改变输出长度；Seedance Prompt 仍必须输出完整版。
 - **`--caption-only`** → 只输出 TikTok 英文标题、首屏短句、Caption、评论引导和标签，不输出视频提示词。
 - **`--prompt-only`** → 只输出 Seedance 竖屏提示词，不输出运营文案。
 - **`--15s`** → 将视频从默认 10 秒扩展到 15 秒，增加更清晰的分段展开和 loop 结尾。
@@ -86,7 +86,7 @@
 - `**Next Variations**`
   - 只给 3 条下一集选题。
 
-Seedance Prompt 是主输出，不可被摘要化。除非用户显式使用 `--compact`，否则必须逐段保留「Seedance Prompt 模板」的完整结构、段落顺序、时间轴和机械细节，只替换 `{占位符}` 并把目标相关细节扩写进去。
+Seedance Prompt 是主输出，不可被摘要化。必须逐段保留「Seedance Prompt 模板」的完整结构、段落顺序、时间轴和机械细节，只替换 `{占位符}` 并把目标相关细节扩写进去。
 
 输出时遵守以下硬要求：
 
@@ -95,7 +95,7 @@ Seedance Prompt 是主输出，不可被摘要化。除非用户显式使用 `--
 - 不要丢失时间轴中的所有时间块：`[0.0-1.2 秒]`、`[1.2-1.8 秒]`、`[1.8-8.8 秒]`、`[1.8-2.7 秒]`、`[2.7-3.8 秒]`、`[3.8-5.1 秒]`、`[5.1-6.5 秒]`、`[6.5-7.8 秒]`、`[7.8-8.8 秒]`、`[8.8-10.0 秒]`。
 - 不要删除固定镜头、场景、手部、质量守恒、源开口、五拍微循环、串行展开、真实重量、关键限制等描述；目标差异只能通过替换占位符和补充目标细节来体现。
 - 所有 `{占位符}` 必须替换为具体内容，最终输出里不能残留花括号占位符。
-- `--prompt-only` 时只输出完整 Seedance Prompt 代码块，不输出 TikTok Package；`--caption-only` 时不输出 Seedance Prompt；`--compact` 才允许压缩，但仍必须保留镜头、时间轴、五拍节奏、质量守恒和关键限制。
+- `--prompt-only` 时只输出完整 Seedance Prompt 代码块，不输出 TikTok Package；`--caption-only` 时不输出 Seedance Prompt；`--compact` 已废弃，不允许压缩 Seedance Prompt。
 
 ## 系列选择规则
 

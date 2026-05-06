@@ -1,6 +1,6 @@
 # Seedance TikTok 美国州系列机械魔盒 01-05 完整提示词
 
-> 基于 `seedance-tiktok-us-mechbox TK美国魔盒.md` 的 `/tk-mechbox-us state` 规则生成。以下 5 条均为完整输出，不是 compact 短版。
+> 基于 `seedance-tiktok-us-mechbox TK美国魔盒.md` 的 `/tk-mechbox-us state` 规则生成。以下 5 条均为完整输出。
 
 ## 01 · Texas · Armored Oilfield Pickup Crawler
 
