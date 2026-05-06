@@ -1,0 +1,4 @@
+interface:
+  display_name: "Seedance Country Mechbox"
+  short_description: "Infer a vehicle, device, or mechanical animal from a country and generate a Seedance prompt"
+  default_prompt: "Use $seedance-country-mechbox to turn a country into a mechanical box target prompt, including animal targets when useful."

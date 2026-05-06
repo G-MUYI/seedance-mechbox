@@ -61,11 +61,12 @@ UI metadata file, follow this file first.
 
 ## Skill Inventory
 
-This repository currently contains eight installable skills:
+This repository currently contains nine installable skills:
 
 - `seedance-mechbox`
 - `seedance-american-truckbox`
 - `seedance-tiktok-us-mechbox`
+- `seedance-country-mechbox`
 - `seedance-zodiac-beast`
 - `seedance-zodiac-beast-bust`
 - `seedance-zodiac-beast-crest`
