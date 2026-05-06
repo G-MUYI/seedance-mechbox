@@ -1,0 +1,4 @@
+interface:
+  display_name: "Seedance Zodiac Beast Diorama"
+  short_description: "Zodiac beast miniature display prompts"
+  default_prompt: "Use $seedance-zodiac-beast-diorama to create a zodiac beast miniature diorama prompt."

@@ -1,0 +1,4 @@
+interface:
+  display_name: "Seedance American Truckbox"
+  short_description: "American truck mechanical box prompts"
+  default_prompt: "Use $seedance-american-truckbox to create an American truck mechanical box prompt."

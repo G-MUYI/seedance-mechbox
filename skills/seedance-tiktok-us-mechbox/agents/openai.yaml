@@ -1,0 +1,4 @@
+interface:
+  display_name: "Seedance TikTok US Mechbox"
+  short_description: "US TikTok mechanical box content prompts"
+  default_prompt: "Use $seedance-tiktok-us-mechbox to create US TikTok mechanical box content."

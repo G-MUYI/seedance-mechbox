@@ -1,0 +1,4 @@
+interface:
+  display_name: "Seedance Zodiac Beast Bust"
+  short_description: "Zodiac beast mecha bust prompts"
+  default_prompt: "Use $seedance-zodiac-beast-bust to create a zodiac beast mecha bust prompt."

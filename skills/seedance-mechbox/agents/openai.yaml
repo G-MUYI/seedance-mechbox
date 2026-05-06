@@ -1,0 +1,4 @@
+interface:
+  display_name: "Seedance Mechbox"
+  short_description: "Seedance mechanical box prompt generator"
+  default_prompt: "Use $seedance-mechbox to create a Seedance mechanical box transformation prompt."

@@ -1,0 +1,4 @@
+interface:
+  display_name: "Seedance Zodiac Beast Mask"
+  short_description: "Zodiac beast mecha mask prompts"
+  default_prompt: "Use $seedance-zodiac-beast-mask to create a zodiac beast mecha mask prompt."
