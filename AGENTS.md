@@ -35,10 +35,11 @@ UI metadata file, follow this file first.
 - Produce the final usable Seedance prompt or content output unless the user asks
   for analysis, planning, or editing guidance.
 - Preserve the selected skill's output contract from its reference file.
-- Always output the full detailed prompt. Do not generate compact, short,
-  compressed, summary, or outline prompt variants, even if the user input
-  contains `--compact`, "短版", "紧凑版", "压缩版", or similar wording. Treat
-  those old switches as deprecated and continue with the full prompt structure.
+- Default to the selected skill's full output contract. Most skills output a
+  detailed prompt, but `seedance-world-cup-mechbox` defines a core-skeleton
+  full prompt: preserve its required camera, subject, timeline, mechanical,
+  physical-continuity, and constraint sections without redundant expansion.
+  Do not create ad hoc summaries outside the selected skill's reference file.
 - Final Seedance prompts must be long enough for direct use: keep all required
   sections, timeline beats, mechanical rules, material details, camera rules,
   physical continuity, and key constraints. Do not collapse them into a brief
@@ -61,7 +62,7 @@ UI metadata file, follow this file first.
 
 ## Skill Inventory
 
-This repository currently contains nine installable skills:
+This repository currently contains ten installable skills:
 
 - `seedance-mechbox`
 - `seedance-american-truckbox`
@@ -72,3 +73,4 @@ This repository currently contains nine installable skills:
 - `seedance-zodiac-beast-crest`
 - `seedance-zodiac-beast-diorama`
 - `seedance-zodiac-beast-mask`
+- `seedance-world-cup-mechbox`

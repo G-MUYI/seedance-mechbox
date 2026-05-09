@@ -1,4 +1,4 @@
 interface:
   display_name: "Seedance Country Mechbox"
-  short_description: "Infer a vehicle, device, or mechanical animal from a country and generate a Seedance prompt"
-  default_prompt: "Use $seedance-country-mechbox to turn a country into a mechanical box target prompt, including animal targets when useful."
+  short_description: "Country mechbox prompts with visible flag-mecha identity"
+  default_prompt: "Use $seedance-country-mechbox to turn a country into a mechanical box target prompt, requiring clearly visible flag-color armor areas and mechanically translated flag elements on both the initial box and final target."

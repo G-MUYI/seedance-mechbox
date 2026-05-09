@@ -1,0 +1,4 @@
+interface:
+  display_name: "Seedance World Cup Mechbox"
+  short_description: "World Cup football mechbox prompts"
+  default_prompt: "Use $seedance-world-cup-mechbox to turn a World Cup country, national team, football role, or recognizable real-player cartoon mechanical figure cue into a core-skeleton Seedance mechanical box prompt with first-person handheld realism."
