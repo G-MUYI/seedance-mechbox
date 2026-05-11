@@ -1,7 +1,53 @@
+# Claude Code
 .gstack/
+.claude/
 
 # OS/editor noise
 .DS_Store
 Thumbs.db
 *.tmp
 *.log
+*.swp
+*~
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+venv/
+env/
+ENV/
+
+# Node.js
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pnpm-debug.log*
+
+# Build outputs
+dist/
+build/
+*.egg-info/
+
+# IDE
+.vscode/
+.idea/
+*.sublime-*
+
+# Environment
+.env
+.env.local
+.env.*.local
+
+# Test coverage
+coverage/
+.coverage
+htmlcov/
+
+# Temporary work files
+TODO.md
+NOTES.md
+scratch/

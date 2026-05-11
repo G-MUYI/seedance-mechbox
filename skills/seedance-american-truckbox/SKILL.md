@@ -12,16 +12,14 @@ American heavy truck mechanical box workflow.
 
 ## Workflow
 
-1. Read `references/generator.md`.
-2. Choose or parse the truck archetype, era, drivetrain mood, location, finish,
-   and output length.
-3. Use the reference mapping and detailed specifications to build the final
-   Seedance prompt.
-4. Always return the full detailed prompt. Do not produce compact, short,
-   compressed, summary, or outline prompt variants; treat `--compact` and short
-   version wording as deprecated.
-5. Read `references/full-prompts-01-06.md` only when the user asks for complete
-   prompts, examples, or entries 01-06.
+1. Read `../../shared/references/mechbox-optimized-template.md` for the optimized
+   prompt template (200-450 characters, follows seedance-prompt-research.md).
+2. If user explicitly requests "detailed version", "完整版", or "详细版",
+   read `references/generator.md` instead.
+3. Parse the truck archetype, era, drivetrain mood, location, and finish.
+4. Apply the american-truckbox section from the template: embed truck features
+   (rivets, chrome, highway stripes) into mechanical elements.
+5. Return the final prompt directly.
 
 ## References
 

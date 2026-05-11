@@ -12,33 +12,19 @@ country-to-target mechanical box generator.
 
 ## Workflow
 
-1. Read `references/generator.md`.
-2. Parse the requested country, region wording, audience context, optional target
-   override, output length wording, and any explicit Seedance constraints.
-3. Infer a concrete target object from the country using the reference mapping
-   table and reverse-design workflow. If the user asks for animals, infer a
-   mechanical animal / mecha beast rather than a live biological animal.
-4. Derive the country's flag palette and recognizable flag elements. The
-   initial mechanical box and final target object must both carry the same
-   flag-inspired design logic, with separate concrete placement surfaces for
-   each stage. Make the flag identity visually readable in the prompt: the
-   box and the final target each need visible flag-color armor areas plus a
-   mechanically translated flag element on a clear front, top, side, head,
-   hull, wheel-skirt, wing-root, or lens surface. Translate the elements into
-   mechanical paint layers, engraved lines, narrow light strips, relief parts,
-   panel seams, lens details, or functional armor geometry. Do not output a
-   literal flag sticker, full flat flag wrap, or exact official emblem.
-5. Run a final lexical safety pass: replace high-risk real-world identity,
-   organization-mark, real-conflict, and aggressive-equipment
-   wording with neutral mechanical structure, material, industrial nameplate,
-   and regional-environment descriptions.
-6. Run a final flag-visibility pass: if the first 1.8 seconds would not show
-   the box's flag palette and element, or the final 1.2 seconds would not show
-   the target object's flag palette and element, strengthen the prompt before
-   returning it.
-7. Return the final prompt directly. Always use the full detailed version; do
-   not produce compact, short, compressed, summary, or outline prompt variants.
-   Treat `--compact` and short version wording as deprecated.
+1. Read `references/generator-optimized.md` for the optimized prompt template
+   (250-450 characters, follows seedance-prompt-research.md best practices).
+2. If user explicitly requests "detailed version", "完整版", or "详细版",
+   read `references/generator.md` instead.
+3. Parse the requested country, optional target override, and any explicit
+   Seedance constraints.
+4. Infer a concrete target object from the country using the reference mapping
+   table. If the user asks for animals, infer a mechanical animal / mecha beast.
+5. Derive the country's flag palette (2-3 colors) and one mechanically
+   translatable flag element (star, sun, cross, stripes, etc.).
+6. Apply the optimized template: embed flag colors in armor/frame contrast,
+   place flag element in specific box and target positions.
+7. Return the final prompt directly.
 
 ## References
 

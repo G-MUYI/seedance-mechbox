@@ -12,14 +12,15 @@ zodiac beast miniature diorama generator.
 
 ## Workflow
 
-1. Read `references/generator.md`.
-2. Parse the zodiac sign, beast identity, diorama scene, scale, material shell,
-   tone, output length, and any explicit Seedance constraints.
-3. Apply the reference mapping table, randomization rules, execution steps, and
-   output contract.
-4. Return the final prompt directly. Always use the full detailed version; do
-   not produce compact, short, compressed, summary, or outline prompt variants.
-   Treat `--compact` and short version wording as deprecated.
+1. Read `../../shared/references/mechbox-optimized-template.md` for the optimized
+   prompt template (200-450 characters, follows seedance-prompt-research.md).
+2. If user explicitly requests "detailed version", "完整版", or "详细版",
+   read `references/generator.md` instead.
+3. Parse the zodiac sign, beast identity, diorama scene, scale, material shell,
+   tone, and any explicit Seedance constraints.
+4. Apply the zodiac-beast-diorama section from the template: target is miniature
+   diorama with scene base, frame, beast figure, and environment details.
+5. Return the final prompt directly.
 
 ## References
 

@@ -28,6 +28,8 @@ UI metadata file, follow this file first.
    prompt sets, or numbered prompt outputs.
 5. Load `shared/references/seedance-prompt-research.md` only when prompt
    structure, quality diagnosis, or cross-skill optimization is needed.
+6. Load `shared/references/completion-rules.md` when diagnosing or editing
+   mechanical-box completion, duration, or ending-state consistency.
 
 ## Output Rules
 
@@ -35,15 +37,44 @@ UI metadata file, follow this file first.
 - Produce the final usable Seedance prompt or content output unless the user asks
   for analysis, planning, or editing guidance.
 - Preserve the selected skill's output contract from its reference file.
+
+### Prompt Length and Weight Allocation
+
+Based on `shared/references/seedance-prompt-research.md`, Seedance 2.0 performs
+best with **short, structured prompts in the 50-200 word sweet spot** (约 100-400
+个中文字符). Longer prompts dilute the front half and scatter model attention.
+
+**Weight allocation priority** (from research):
+1. Reference asset job assignment (22%) - @Image/@Video/@Audio with clear roles
+2. Task description: subject, action, scene (18%)
+3. Camera & timeline structure (17%) - use [0s] [3s] [6s] format, 3-4 beats for 5-10s
+4. Style & lighting (9%)
+5. Context & background (8%)
+6. Constraints (7%) - positive guardrails first, max 1-2 short negative items
+7. Parameters (7%)
+
+**Avoid over-investing in**:
+- Detailed mechanical part descriptions (keep to 3-5 core visual elements)
+- Long action semantics rules (1-2 sentences max)
+- Dense negative constraint lists (use positive guardrails instead)
+- Meta-rules that belong in generator logic, not final prompts
+
+**Timeline format**: Use explicit timestamps `[0s] ... [3s] ... [6s] ...` with
+one main action + one camera move per beat. For completion-critical tasks, also
+preserve stage-based completion nodes from `completion-rules.md`.
+
+**Common traps to avoid** (from research):
+- Packing too many actions into a single beat
+- Using vague adjectives (epic, beautiful) instead of camera/lighting terms
+- Long prompts where the back half dilutes the front half
+
+### Skill-Specific Rules
+
 - Default to the selected skill's full output contract. Most skills output a
   detailed prompt, but `seedance-world-cup-mechbox` defines a core-skeleton
   full prompt: preserve its required camera, subject, timeline, mechanical,
   physical-continuity, and constraint sections without redundant expansion.
   Do not create ad hoc summaries outside the selected skill's reference file.
-- Final Seedance prompts must be long enough for direct use: keep all required
-  sections, timeline beats, mechanical rules, material details, camera rules,
-  physical continuity, and key constraints. Do not collapse them into a brief
-  prompt or a bullet summary.
 - Prefer concrete visual nouns, physical transformation beats, camera motion,
   material details, lighting, and environment cues over abstract adjectives.
 - Keep one-shot mechanical transformation prompts coherent from opening state to

@@ -12,38 +12,20 @@ World Cup football mechanical box generator.
 
 ## Workflow
 
-1. Read `references/generator.md`.
-2. Parse the requested country, national team, football figure cue, player role,
-   match style, optional target override, output length wording, and any explicit
-   Seedance constraints.
-3. Default to the country / national team path when the user provides both a
-   country and a person, unless the user explicitly asks for a star-player-like
-   cartoon figure, footballer avatar, mascot, Q-version figure, or character
-   shape. In that case, use recognizable star-player avatar mode: make the
-   final target a stylized cartoon mechanical footballer figure that can be
-   read as the requested real World Cup player through caricature-level facial
-   proportions, real hairstyle / beard cues when relevant, role, pose, national
-   team palette, recognizable jersey construction cues, the player's real
-   national-team number as mechanical number plates, boot / ball / glove
-   modules, and signature movement rhythm. Do not make it photorealistic,
-   documentary, deceptive, endorsed, or an exact crest / sponsor / manufacturer
-   mark recreation.
-4. Infer a concrete football-compatible target object using the reference
-   mapping table and reverse-design workflow. Keep the final object mechanical:
-   tournament rover, match-ball core, goal module, keeper shield pod, wing
-   sprint drone, pitch-maintenance vehicle, stadium-light rig, cartoon
-   mechanical star-player avatar, or collectible mechanical animal /
-   mascot-like construct.
-5. Translate national palette, real kit color blocking, collar / sleeve trim,
-   player number, football symbols, and match cues into mechanical paint layers,
-   engraved lines, narrow light strips, relief panels, panel seams, lens forms,
-   pitch-line geometry, net-frame structures, or functional armor shapes. Do not
-   output literal flags, team crests, official emblems, sponsor marks,
-   manufacturer logos, photoreal player portraits, or flat sticker graphics.
-6. Return the final prompt directly using the core-skeleton full prompt contract
-   in `references/generator.md`: keep the required first-person handheld camera,
-   subject, football translation, timeline, mechanical physics, and constraints,
-   but avoid redundant expansion that weakens the front half of the prompt.
+1. Read `references/generator-optimized.md` for the optimized prompt template
+   (250-450 characters, follows seedance-prompt-research.md best practices).
+2. If user explicitly requests "detailed version", "完整版", or "详细版",
+   read `references/generator.md` instead.
+3. Parse the requested country, national team, football figure cue, player role,
+   match style, optional target override, and any explicit Seedance constraints.
+4. Default to the country / national team path. Use recognizable star-player
+   avatar mode only when the user explicitly asks for "像某位真实球员", "能看出是谁",
+   "卡通球星", "Q版球员", or "球星人偶".
+5. Infer a concrete football-compatible target object using the reference
+   mapping table.
+6. Apply the optimized template: embed national team colors in armor/frame
+   contrast, translate jersey features into mechanical elements.
+7. Return the final prompt directly.
 
 ## References
 

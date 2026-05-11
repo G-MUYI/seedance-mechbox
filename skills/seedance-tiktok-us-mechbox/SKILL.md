@@ -12,15 +12,14 @@ TikTok mechanical box content workflow.
 
 ## Workflow
 
-1. Read `references/generator.md`.
-2. Parse the requested US content angle, state or series, hook style, audience,
-   caption needs, and Seedance prompt needs.
-3. Follow the strict output contract in the reference.
-4. Always keep the Seedance Prompt as the full detailed prompt. Do not produce
-   compact, short, compressed, summary, or outline prompt variants; treat
-   `--compact` and short version wording as deprecated.
-5. Read `references/states-full-prompts-01-05.md` only when the user asks for
-   the complete state examples or entries 01-05.
+1. Read `../../shared/references/mechbox-optimized-template.md` for the optimized
+   prompt template (200-450 characters, follows seedance-prompt-research.md).
+2. If user explicitly requests "detailed version", "完整版", or "详细版",
+   read `references/generator.md` instead.
+3. Parse the requested US state, content angle, and any explicit constraints.
+4. Apply the tiktok-us-mechbox section from the template: embed state flag colors
+   and state-specific elements (Texas star, California bear) into mechanical design.
+5. Return the final Seedance prompt directly.
 
 ## References
 
