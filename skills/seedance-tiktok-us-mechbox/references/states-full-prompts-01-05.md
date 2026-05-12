@@ -21,7 +21,7 @@
 ```text
 TikTok US 竖屏机械魔盒系列｜50 States Mech Box｜Texas armored oilfield pickup crawler
 
-10秒，9:16，单镜头，第一人称真实手持拍摄。画面本身不出现字幕、UI、贴纸或 TikTok 界面元素。
+10秒，9:16，一镜到底，第一人称真实手持拍摄。画面本身不出现字幕、UI、贴纸或 TikTok 界面元素。
 
 一、镜头设定
 
@@ -117,7 +117,7 @@ TikTok US 竖屏机械魔盒系列｜50 States Mech Box｜Texas armored oilfield
 ```text
 TikTok US 竖屏机械魔盒系列｜50 States Mech Box｜California solar coastal hypercar
 
-10秒，9:16，单镜头，第一人称真实手持拍摄。画面本身不出现字幕、UI、贴纸或 TikTok 界面元素。
+10秒，9:16，一镜到底，第一人称真实手持拍摄。画面本身不出现字幕、UI、贴纸或 TikTok 界面元素。
 
 一、镜头设定
 
@@ -213,7 +213,7 @@ TikTok US 竖屏机械魔盒系列｜50 States Mech Box｜California solar coast
 ```text
 TikTok US 竖屏机械魔盒系列｜50 States Mech Box｜Florida swamp rescue buggy
 
-10秒，9:16，单镜头，第一人称真实手持拍摄。画面本身不出现字幕、UI、贴纸或 TikTok 界面元素。
+10秒，9:16，一镜到底，第一人称真实手持拍摄。画面本身不出现字幕、UI、贴纸或 TikTok 界面元素。
 
 一、镜头设定
 
@@ -309,7 +309,7 @@ TikTok US 竖屏机械魔盒系列｜50 States Mech Box｜Florida swamp rescue b
 ```text
 TikTok US 竖屏机械魔盒系列｜50 States Mech Box｜New York yellow urban taxi mech
 
-10秒，9:16，单镜头，第一人称真实手持拍摄。画面本身不出现字幕、UI、贴纸或 TikTok 界面元素。
+10秒，9:16，一镜到底，第一人称真实手持拍摄。画面本身不出现字幕、UI、贴纸或 TikTok 界面元素。
 
 一、镜头设定
 
@@ -405,7 +405,7 @@ TikTok US 竖屏机械魔盒系列｜50 States Mech Box｜New York yellow urban 
 ```text
 TikTok US 竖屏机械魔盒系列｜50 States Mech Box｜Alaska snow crawler
 
-10秒，9:16，单镜头，第一人称真实手持拍摄。画面本身不出现字幕、UI、贴纸或 TikTok 界面元素。
+10秒，9:16，一镜到底，第一人称真实手持拍摄。画面本身不出现字幕、UI、贴纸或 TikTok 界面元素。
 
 一、镜头设定
 
