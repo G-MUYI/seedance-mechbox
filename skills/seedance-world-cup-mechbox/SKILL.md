@@ -1,6 +1,6 @@
 ---
 name: seedance-world-cup-mechbox
-description: Generate Seedance mechanical box prompts that infer the final target object from a World Cup country, national team, football style, football figure cue, or recognizable cartoon star-player avatar request. Use when the user invokes /seedance-world-cup-mechbox, /world-cup-mechbox, /football-mechbox, /wc-mechbox, or asks to reverse World Cup countries, national teams, real World Cup football stars, football legends, star-player cues, player roles, kits, match moments, football culture, or recognizable star-player-like cartoon mechanical figures into a mechanical box transformation target.
+description: Generate Seedance World Cup mechanical box prompts from country, team, player role, or football style. Use when the user invokes /seedance-world-cup-mechbox, /world-cup-mechbox, /football-mechbox, or asks for football-themed mechanical transformations.
 ---
 
 # Seedance World Cup Mechbox
@@ -10,22 +10,39 @@ description: Generate Seedance mechanical box prompts that infer the final targe
 Follow `../../AGENTS.md` first when available. This `SKILL.md` only routes the
 World Cup football mechanical box generator.
 
+## Core Principles (based on seedance-prompt-research.md)
+
+- Reference asset role assignment (22% weight) > Task description (18%) > Camera/time structure (17%)
+- Each timestamp describes 1 main action + 1 main camera movement
+- Prioritize positive guardrails, avoid excessive negative constraints
+
 ## Workflow
 
 1. Read `references/generator-optimized.md` for the optimized prompt template
-   (250-450 characters, follows seedance-prompt-research.md best practices).
-2. If user explicitly requests "detailed version", "完整版", or "详细版",
-   read `references/generator.md` instead.
-3. Parse the requested country, national team, football figure cue, player role,
+   (200-400 characters, follows seedance-prompt-research.md best practices).
+2. Check if user provided reference images:
+   - With reference images: use @Image1/@Image2 version (~350 characters)
+   - Without reference images: use "final target" line version (~380-400 characters)
+3. Default to optimized version (200-400 characters, follows Seedance 2.0 best practices).
+   Only read `references/generator.md` when user explicitly requests "complete mapping table",
+   "detailed rules", or "generator.md version".
+4. Parse the requested country, national team, football figure cue, player role,
    match style, optional target override, and any explicit Seedance constraints.
-4. Default to the country / national team path. Use recognizable star-player
+5. Default to the country / national team path. Use recognizable star-player
    avatar mode only when the user explicitly asks for "像某位真实球员", "能看出是谁",
    "卡通球星", "Q版球员", or "球星人偶".
-5. Infer a concrete football-compatible target object using the reference
+6. Infer a concrete football-compatible target object using the reference
    mapping table.
-6. Apply the optimized template: embed national team colors in armor/frame
+7. Apply the optimized template: embed national team colors in armor/frame
    contrast, translate jersey features into mechanical elements.
-7. Return the final prompt directly.
+8. Use explicit timeline structure: [0s] [2s] [4s] [6s] [8s] [10s],
+   each timestamp describes only one main action and one main camera change.
+9. Return the final prompt directly.
+
+## Notes
+
+- Prioritize positive guardrails ("maintain face consistency, steady camera")
+- Avoid excessive negative constraints (research shows only 2% weight)
 
 ## References
 

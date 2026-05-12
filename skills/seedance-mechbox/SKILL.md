@@ -10,16 +10,33 @@ description: Generate Seedance 2.0 mechanical box transformation prompts for zod
 Follow `../../AGENTS.md` first when available. This `SKILL.md` is only the entry
 guide for the general mechanical box generator.
 
+## Core Principles (based on seedance-prompt-research.md)
+
+- Reference asset role assignment (22% weight) > Task description (18%) > Camera/time structure (17%)
+- Each timestamp describes 1 main action + 1 main camera movement
+- Prioritize positive guardrails, avoid excessive negative constraints
+
 ## Workflow
 
 1. Read `references/generator-optimized.md` for the optimized prompt template
    (200-400 characters, follows seedance-prompt-research.md best practices).
-2. If user explicitly requests "detailed version", "完整版", or "详细版",
-   read `references/generator.md` instead.
-3. Parse the requested zodiac sign, vehicle type, tone, and any explicit
+2. Check if user provided reference images:
+   - With reference images: use @Image1/@Image2 version (~350 characters)
+   - Without reference images: use "final target" line version (~380-400 characters)
+3. Default to optimized version (200-400 characters, follows Seedance 2.0 best practices).
+   Only read `references/generator.md` when user explicitly requests "complete mapping table",
+   "detailed rules", or "generator.md version".
+4. Parse the requested zodiac sign, vehicle type, tone, and any explicit
    Seedance constraints.
-4. Apply the mapping table and fill in the optimized template.
-5. Return the final prompt directly.
+5. Apply the mapping table and fill in the optimized template.
+6. Use explicit timeline structure: [0s] [2s] [4s] [6s] [8s] [10s],
+   each timestamp describes only one main action and one main camera change.
+7. Return the final prompt directly.
+
+## Notes
+
+- Prioritize positive guardrails ("maintain face consistency, steady camera")
+- Avoid excessive negative constraints (research shows only 2% weight)
 
 ## References
 
