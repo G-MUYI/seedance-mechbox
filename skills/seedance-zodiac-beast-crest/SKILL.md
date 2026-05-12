@@ -18,21 +18,36 @@ zodiac beast crest shield generator.
 
 ## Workflow
 
-1. Read `../../shared/references/mechbox-optimized-template.md` for the optimized
-   prompt template (200-400 characters, follows seedance-prompt-research.md).
-2. Check if user provided reference images:
-   - With reference images: use @Image1/@Image2 version (~350 characters)
-   - Without reference images: use "final target" line version (~380-400 characters)
-3. Default to optimized version (200-400 characters, follows Seedance 2.0 best practices).
-   Only read `references/generator.md` when user explicitly requests "complete mapping table",
-   "detailed rules", or "generator.md version".
-4. Parse the zodiac sign, beast identity, crest shell, shield structure, tone,
-   and any explicit Seedance constraints.
-5. Apply the zodiac-beast-crest section from the template: target is crest shield
-   with base support, shield frame, and beast relief emblem.
-6. Use explicit timeline structure: [0s] [2s] [4s] [6s] [8s] [10s],
-   each timestamp describes only one main action and one main camera change.
-7. Return the final prompt directly.
+**CRITICAL: Follow the reverse-engineering approach from `../../AGENTS.md`, NOT template filling.**
+
+1. **Analyze the zodiac beast crest's structural features**:
+   - What is the core form? (crest shield = base + shield frame + beast relief emblem)
+   - What are the signature components for this zodiac? (dragon relief vs. crab shell pattern vs. lion face)
+   - What is the natural deployment logic? (base stabilizes → frame expands → relief layers deploy → emblem details emerge)
+
+2. **Reverse-engineer the mechanical box**:
+   - Box shape must hint at shield form (flat rectangular or heraldic shape)
+   - Seam layout corresponds to shield components (base, frame edges, relief layers)
+   - Trigger mechanism echoes zodiac theme
+
+3. **Design the transformation sequence**:
+   - Each timestamp must reflect the crest's unique structural logic
+   - NOT a generic 6-step template applied to all zodiac crests
+   - Example: Dragon crest uses layered relief deployment + scale pattern emergence; Crab crest uses shell-segment expansion; Lion crest uses mane-frame radial deployment
+
+4. **Reference the mapping table** in `references/generator.md` for:
+   - Zodiac-specific crest features
+   - Shield structure variations
+   - Relief emblem details
+
+5. **Generate the complete prompt** following Seedance 2.0 best practices:
+   - Use explicit timeline: [0s] [2s] [4s] [6s] [8s] [10s]
+   - Each timestamp: one main action + one camera change
+   - Derived from structural analysis, not template filling
+
+6. **Validation check**:
+   - If you remove the zodiac name, can a reader guess which beast it is from the crest transformation logic alone?
+   - If NO → you're still template filling. Go back to step 1.
 
 ## Notes
 

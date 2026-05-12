@@ -12,6 +12,44 @@
 
 ---
 
+## [未发布] - 2026-05-12
+
+### Changed - 全局 🔄 **重大架构改进**
+
+- **从"套模板"转向"倒推式"生成逻辑**
+  - **问题**：之前所有 skills 都套用固定模板填空，只改变颜色/材质变量，导致提示词缺乏针对性
+  - **改进**：引入倒推式设计理念 - 从目标物的结构特征倒推机械盒子的设计
+  - **核心变化**：
+    1. 新增 `skills/_shared/reverse-engineering-template.md` - 倒推式生成模板
+    2. 新增 `docs/reverse-engineering-examples.md` - 新旧方式对比示例（龙、螃蟹、卡车）
+    3. 新增 `docs/reverse-engineering-audit.md` - 架构审查报告
+    4. 更新 `AGENTS.md` - 新增"Reverse Engineering Process"核心流程
+    5. 更新 `README.md` - 说明倒推式设计理念
+    6. 更新所有 10 个 skills 的 `SKILL.md` - 应用倒推逻辑工作流
+  - **生成流程**：
+    ```
+    旧：查映射表 → 填变量 → 套固定时间轴
+    新：分析目标物结构 → 设计盒子形态 → 定制变形序列
+    ```
+  - **效果对比**：
+    - ❌ 旧方式：所有目标物用同一套 [0s]触发 [2s]砸桌 [4s]底座 [6s]装甲 [8s]前端 [10s]锁定
+    - ✅ 新方式：龙用脊椎波浪解锁，螃蟹用甲壳放射翻开，卡车用车头车厢分段展开
+  - **验证标准**：删掉目标物名称后，读者能从变形逻辑猜出是什么 → 说明不再套模板
+  - **影响范围**：全部 10 个 skills
+    - seedance-mechbox
+    - seedance-american-truckbox
+    - seedance-tiktok-us-mechbox
+    - seedance-country-mechbox
+    - seedance-world-cup-mechbox
+    - seedance-zodiac-beast
+    - seedance-zodiac-beast-bust
+    - seedance-zodiac-beast-crest
+    - seedance-zodiac-beast-diorama
+    - seedance-zodiac-beast-mask
+  - **原因**：用户反馈"主体盒子太套模板了"，需要根据最终目标物去倒推机械盒子
+
+---
+
 ## [未发布] - 2026-05-11
 
 ### Changed - 全局

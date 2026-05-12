@@ -18,20 +18,37 @@ TikTok mechanical box content workflow.
 
 ## Workflow
 
-1. Read `../../shared/references/mechbox-optimized-template.md` for the optimized
-   prompt template (200-400 characters, follows seedance-prompt-research.md).
-2. Check if user provided reference images:
-   - With reference images: use @Image1/@Image2 version (~350 characters)
-   - Without reference images: use "final target" line version (~380-400 characters)
-3. Default to optimized version (200-400 characters, follows Seedance 2.0 best practices).
-   Only read `references/generator.md` when user explicitly requests "complete mapping table",
-   "detailed rules", or "generator.md version".
-4. Parse the requested US state, content angle, and any explicit constraints.
-5. Apply the tiktok-us-mechbox section from the template: embed state flag colors
-   and state-specific elements (Texas star, California bear) into mechanical design.
-6. Use explicit timeline structure: [0s] [2s] [4s] [6s] [8s] [10s],
-   each timestamp describes only one main action and one main camera change.
-7. Return the final Seedance prompt directly.
+**CRITICAL: Follow the reverse-engineering approach from `../../AGENTS.md`, NOT template filling.**
+
+1. **Analyze the state-themed target object's structural features**:
+   - What is the core form? (Texas oil rig truck vs. California beach patrol vehicle vs. Alaska snow crawler)
+   - What are the signature components? (state-specific equipment, terrain adaptations, cultural elements)
+   - What is the natural deployment logic? (based on the target vehicle/object type)
+
+2. **Reverse-engineer the mechanical box**:
+   - Box shape must hint at the target object form
+   - Seam layout corresponds to key components
+   - Trigger mechanism echoes state theme (Texas star button, California bear emblem)
+   - State flag colors and symbols integrated into mechanical design (NOT as flat decals)
+
+3. **Design the transformation sequence**:
+   - Each timestamp must reflect the target object's unique structural logic
+   - NOT a generic 6-step template applied to all states
+   - Example: Texas oil rig uses vertical drilling tower extension; California lifeguard truck uses beach-ready wheel deployment + rescue equipment
+
+4. **Reference the mapping table** in `references/generator.md` for:
+   - State-to-target-object mappings
+   - State flag colors and symbolic elements
+   - State-specific cultural and geographical features
+
+5. **Generate the complete prompt** following Seedance 2.0 best practices:
+   - Use explicit timeline: [0s] [2s] [4s] [6s] [8s] [10s]
+   - Each timestamp: one main action + one camera change
+   - Derived from structural analysis, not template filling
+
+6. **Validation check**:
+   - If you remove the state name, can a reader guess which state it is from the transformation logic and visual elements alone?
+   - If NO → you're still template filling. Go back to step 1.
 
 ## Notes
 

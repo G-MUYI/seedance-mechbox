@@ -20,16 +20,65 @@ UI metadata file, follow this file first.
 
 ## Skill Runtime Workflow
 
+### Core Principle: Reverse Engineering from Target Object
+
+**DO NOT套用固定模板填空。** Instead, analyze the target object's structural features and reverse-engineer the mechanical box design.
+
 1. Select the skill from the user's explicit command or requested theme.
 2. Read this `AGENTS.md` before applying any detailed generator rule.
-3. Read the selected skill's `references/generator.md` or the specific variant
-   reference named by the user.
-4. Load expanded prompt examples only when the user asks for examples, full
+3. **Analyze the target object first** (see "Reverse Engineering Process" below).
+4. Read the selected skill's `references/generator.md` for domain-specific mappings.
+5. Load expanded prompt examples only when the user asks for examples, full
    prompt sets, or numbered prompt outputs.
-5. Load `shared/references/seedance-prompt-research.md` only when prompt
+6. Load `shared/references/seedance-prompt-research.md` only when prompt
    structure, quality diagnosis, or cross-skill optimization is needed.
-6. Load `shared/references/completion-rules.md` when diagnosing or editing
+7. Load `shared/references/completion-rules.md` when diagnosing or editing
    mechanical-box completion, duration, or ending-state consistency.
+
+### Reverse Engineering Process
+
+Before generating any prompt, follow this analysis:
+
+**Step 1: Analyze Target Object Structure**
+
+Identify:
+- **Overall form type**: elongated (dragon, truck) / spherical (crab, tank) / tall (giraffe, crane) / spreading (bird, plane) / multi-legged (spider, octopus)
+- **Key components**: head/front, torso/body, limbs/supports, tail/rear, appendages (wings/antennae/equipment)
+- **Movement/deployment logic**: serpentine (spine segments unlock sequentially) / enclosing (shell opens from center) / folding (wings unfold from storage) / telescoping (nested tubes extend) / assembly (parts converge from different directions)
+
+**Step 2: Reverse-Engineer the Mechanical Box**
+
+Design the initial box based on target features:
+- **Box shape**: must hint at final form (elongated target → rectangular box with spine seams; spherical target → polyhedron shell with equator split)
+- **Seam layout**: each key component corresponds to a source opening
+- **Trigger mechanism**: thematically related to target (dragon → dragon-scale button; truck → steering wheel knob)
+- **Front identification**: gear window pattern previews final form
+
+**Step 3: Design Transformation Sequence**
+
+**CRITICAL**: Transformation order must follow the target's structural logic, NOT a generic template.
+
+Timeline design (6 keyframes):
+- `[0s]` Trigger & drop - action echoes target theme
+- `[2s]` Stage 1: Establish support/foundation (varies by form type)
+- `[4s]` Stage 2: Main body takes shape (varies by form type)
+- `[6s]` Stage 3: Key components deploy
+- `[8s]` Stage 4: Detail refinement
+- `[10s]` Stage 5: Lock and finalize - signature action (dragon tail whip / crab claw snap / truck horn)
+
+**Form-Specific Transformation Patterns** (reference only, adapt to actual target):
+
+| Form Type | Box Feature | Transformation Logic |
+|-----------|-------------|---------------------|
+| Elongated (dragon, snake, train, truck) | Rectangular with spine seams | Spine segments unlock in wave → supports deploy → head extends → tail finalizes |
+| Spherical/Block (crab, turtle, tank) | Polyhedron shell, equator split or top petals | Shell/lid opens → support legs extend from sides → head/turret rises → claws/arms deploy |
+| Tall (giraffe, crane, lighthouse) | Vertical cylinder, thick base | Base stabilizes first → body rises in telescoping sections → neck/arm extends segment by segment → head/top finalizes |
+| Spreading (bird, plane, kite) | Flat box with side fold slots | Central axis/fuselage fixes → wings unfold from sides → head/nose extends → tail/tail feathers deploy last |
+| Multi-legged (spider, octopus, multi-axle vehicle) | Central block + peripheral hatches | Legs extend in batches (symmetrical) → central body stabilizes → head/cockpit rises → tentacles/arms deploy sequentially |
+
+**Step 4: Generate Complete Prompt**
+
+Organize per Seedance 2.0 best practices, but with content derived from analysis, not template filling.
 
 ## Output Rules
 

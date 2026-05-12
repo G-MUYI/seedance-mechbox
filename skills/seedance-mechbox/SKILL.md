@@ -18,20 +18,36 @@ guide for the general mechanical box generator.
 
 ## Workflow
 
-1. Read `references/generator-optimized.md` for the optimized prompt template
-   (200-400 characters, follows seedance-prompt-research.md best practices).
-2. Check if user provided reference images:
-   - With reference images: use @Image1/@Image2 version (~350 characters)
-   - Without reference images: use "final target" line version (~380-400 characters)
-3. Default to optimized version (200-400 characters, follows Seedance 2.0 best practices).
-   Only read `references/generator.md` when user explicitly requests "complete mapping table",
-   "detailed rules", or "generator.md version".
-4. Parse the requested zodiac sign, vehicle type, tone, and any explicit
-   Seedance constraints.
-5. Apply the mapping table and fill in the optimized template.
-6. Use explicit timeline structure: [0s] [2s] [4s] [6s] [8s] [10s],
-   each timestamp describes only one main action and one main camera change.
-7. Return the final prompt directly.
+**CRITICAL: Follow the reverse-engineering approach from `../../AGENTS.md`, NOT template filling.**
+
+1. **Analyze the target object's structural features**:
+   - What is the core form? (elongated vehicle vs. compact machine vs. tall structure)
+   - What are the signature components? (wheels, chassis, cabin, exhaust, cargo area)
+   - What is the natural deployment logic? (telescoping vs. folding vs. segment unlocking)
+
+2. **Reverse-engineer the mechanical box**:
+   - Box shape must hint at the final object form
+   - Seam layout corresponds to key components
+   - Trigger mechanism echoes the object theme
+
+3. **Design the transformation sequence**:
+   - Each timestamp must reflect the object's unique structural logic
+   - NOT a generic 6-step template applied to all targets
+   - Example: Truck uses front-rear segment separation; Train uses spine-car chain extension
+
+4. **Reference the mapping table** in `references/generator.md` for:
+   - Vehicle/object archetypes and specifications
+   - Material and color palettes
+   - Thematic details (era, location, purpose)
+
+5. **Generate the complete prompt** following Seedance 2.0 best practices:
+   - Use explicit timeline: [0s] [2s] [4s] [6s] [8s] [10s]
+   - Each timestamp: one main action + one camera change
+   - Derived from structural analysis, not template filling
+
+6. **Validation check**:
+   - If you remove the object name, can a reader guess what it is from the transformation logic alone?
+   - If NO → you're still template filling. Go back to step 1.
 
 ## Notes
 

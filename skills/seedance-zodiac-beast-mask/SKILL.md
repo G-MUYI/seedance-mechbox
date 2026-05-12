@@ -18,21 +18,36 @@ zodiac beast mask generator.
 
 ## Workflow
 
-1. Read `../../shared/references/mechbox-optimized-template.md` for the optimized
-   prompt template (200-400 characters, follows seedance-prompt-research.md).
-2. Check if user provided reference images:
-   - With reference images: use @Image1/@Image2 version (~350 characters)
-   - Without reference images: use "final target" line version (~380-400 characters)
-3. Default to optimized version (200-400 characters, follows Seedance 2.0 best practices).
-   Only read `references/generator.md` when user explicitly requests "complete mapping table",
-   "detailed rules", or "generator.md version".
-4. Parse the zodiac sign, beast identity, mask shell, face structure, tone, and
-   any explicit Seedance constraints.
-5. Apply the zodiac-beast-mask section from the template: target is mechanical
-   mask with base support, mask frame, and beast facial features with eye lenses.
-6. Use explicit timeline structure: [0s] [2s] [4s] [6s] [8s] [10s],
-   each timestamp describes only one main action and one main camera change.
-7. Return the final prompt directly.
+**CRITICAL: Follow the reverse-engineering approach from `../../AGENTS.md`, NOT template filling.**
+
+1. **Analyze the zodiac beast mask's structural features**:
+   - What is the core form? (mask = base support + mask frame + facial features + eye lenses)
+   - What are the signature components for this zodiac? (dragon snout + horns vs. crab mandibles vs. lion muzzle + mane)
+   - What is the natural deployment logic? (base stabilizes → frame expands → facial features deploy → eye lenses activate)
+
+2. **Reverse-engineer the mechanical box**:
+   - Box shape must hint at mask form (flat oval or facial contour shape)
+   - Seam layout corresponds to mask components (base, frame edges, facial feature sections, eye positions)
+   - Trigger mechanism echoes zodiac theme
+
+3. **Design the transformation sequence**:
+   - Each timestamp must reflect the mask's unique structural logic
+   - NOT a generic 6-step template applied to all zodiac masks
+   - Example: Dragon mask uses snout telescoping + horn deployment + scale pattern emergence; Crab mask uses mandible extension + eye-stalk deployment; Lion mask uses muzzle assembly + mane-frame radial expansion
+
+4. **Reference the mapping table** in `references/generator.md` for:
+   - Zodiac-specific mask features
+   - Face structure variations
+   - Eye lens details
+
+5. **Generate the complete prompt** following Seedance 2.0 best practices:
+   - Use explicit timeline: [0s] [2s] [4s] [6s] [8s] [10s]
+   - Each timestamp: one main action + one camera change
+   - Derived from structural analysis, not template filling
+
+6. **Validation check**:
+   - If you remove the zodiac name, can a reader guess which beast it is from the mask transformation logic alone?
+   - If NO → you're still template filling. Go back to step 1.
 
 ## Notes
 

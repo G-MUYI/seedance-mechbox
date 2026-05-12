@@ -18,21 +18,36 @@ main zodiac beast generator.
 
 ## Workflow
 
-1. Read `../../shared/references/mechbox-optimized-template.md` for the optimized
-   prompt template (200-400 characters, follows seedance-prompt-research.md).
-2. Check if user provided reference images:
-   - With reference images: use @Image1/@Image2 version (~350 characters)
-   - Without reference images: use "final target" line version (~380-400 characters)
-3. Default to optimized version (200-400 characters, follows Seedance 2.0 best practices).
-   Only read `references/generator.md` when user explicitly requests "complete mapping table",
-   "detailed rules", or "generator.md version".
-4. Parse the zodiac sign, beast identity, tone, material shell, and any explicit
-   Seedance constraints.
-5. Apply the zodiac-beast section from the template: embed zodiac symbol and
-   beast features into mechanical armor design.
-6. Use explicit timeline structure: [0s] [2s] [4s] [6s] [8s] [10s],
-   each timestamp describes only one main action and one main camera change.
-7. Return the final prompt directly.
+**CRITICAL: Follow the reverse-engineering approach from `../../AGENTS.md`, NOT template filling.**
+
+1. **Analyze the zodiac beast's structural features**:
+   - What is the core form? (elongated dragon vs. spherical crab vs. spreading bird)
+   - What are the signature components? (horns, claws, wings, shell, tail)
+   - What is the natural deployment logic? (serpentine unfolding vs. shell opening vs. wing spreading)
+
+2. **Reverse-engineer the mechanical box**:
+   - Box shape must hint at the final beast form
+   - Seam layout corresponds to key components
+   - Trigger mechanism echoes the zodiac theme
+
+3. **Design the transformation sequence**:
+   - Each timestamp must reflect the beast's unique structural logic
+   - NOT a generic 6-step template applied to all zodiacs
+   - Example: Dragon uses spine-segment wave unlock; Crab uses shell-petal opening; Scorpion uses tail-segment chain extension
+
+4. **Reference the mapping table** in `references/generator.md` for:
+   - Zodiac symbolism and color palette
+   - Signature mechanical sounds
+   - Thematic details (constellation symbols, mythological references)
+
+5. **Generate the complete prompt** following Seedance 2.0 best practices:
+   - Use explicit timeline: [0s] [2s] [4s] [6s] [8s] [10s]
+   - Each timestamp: one main action + one camera change
+   - Derived from structural analysis, not template filling
+
+6. **Validation check**:
+   - If you remove the zodiac name, can a reader guess which beast it is from the transformation logic alone?
+   - If NO → you're still template filling. Go back to step 1.
 
 ## Notes
 

@@ -18,21 +18,36 @@ zodiac beast bust generator.
 
 ## Workflow
 
-1. Read `../../shared/references/mechbox-optimized-template.md` for the optimized
-   prompt template (200-400 characters, follows seedance-prompt-research.md).
-2. Check if user provided reference images:
-   - With reference images: use @Image1/@Image2 version (~350 characters)
-   - Without reference images: use "final target" line version (~380-400 characters)
-3. Default to optimized version (200-400 characters, follows Seedance 2.0 best practices).
-   Only read `references/generator.md` when user explicitly requests "complete mapping table",
-   "detailed rules", or "generator.md version".
-4. Parse the zodiac sign, beast identity, bust material shell, pose, tone, and
-   any explicit Seedance constraints.
-5. Apply the zodiac-beast-bust section from the template: target is bust statue
-   with base support, chest armor, and head/neck assembly.
-6. Use explicit timeline structure: [0s] [2s] [4s] [6s] [8s] [10s],
-   each timestamp describes only one main action and one main camera change.
-7. Return the final prompt directly.
+**CRITICAL: Follow the reverse-engineering approach from `../../AGENTS.md`, NOT template filling.**
+
+1. **Analyze the zodiac beast bust's structural features**:
+   - What is the core form? (bust = head + neck + chest + shoulders, mounted on base)
+   - What are the signature components for this zodiac? (dragon horns vs. crab claws vs. lion mane)
+   - What is the natural deployment logic? (base stabilizes → torso rises → shoulders expand → head/neck extends)
+
+2. **Reverse-engineer the mechanical box**:
+   - Box shape must hint at bust form (vertical cylinder or tapered block)
+   - Seam layout corresponds to bust components (base, chest, shoulders, neck, head)
+   - Trigger mechanism echoes zodiac theme
+
+3. **Design the transformation sequence**:
+   - Each timestamp must reflect the bust's unique structural logic
+   - NOT a generic 6-step template applied to all zodiac busts
+   - Example: Dragon bust uses neck telescoping + horn deployment; Crab bust uses shoulder-claw extension; Lion bust uses mane-petal expansion
+
+4. **Reference the mapping table** in `references/generator.md` for:
+   - Zodiac-specific bust features
+   - Material shell variations
+   - Pose and expression details
+
+5. **Generate the complete prompt** following Seedance 2.0 best practices:
+   - Use explicit timeline: [0s] [2s] [4s] [6s] [8s] [10s]
+   - Each timestamp: one main action + one camera change
+   - Derived from structural analysis, not template filling
+
+6. **Validation check**:
+   - If you remove the zodiac name, can a reader guess which beast it is from the bust transformation logic alone?
+   - If NO → you're still template filling. Go back to step 1.
 
 ## Notes
 

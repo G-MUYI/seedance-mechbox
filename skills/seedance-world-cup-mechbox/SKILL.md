@@ -18,26 +18,38 @@ World Cup football mechanical box generator.
 
 ## Workflow
 
-1. Read `references/generator-optimized.md` for the optimized prompt template
-   (200-400 characters, follows seedance-prompt-research.md best practices).
-2. Check if user provided reference images:
-   - With reference images: use @Image1/@Image2 version (~350 characters)
-   - Without reference images: use "final target" line version (~380-400 characters)
-3. Default to optimized version (200-400 characters, follows Seedance 2.0 best practices).
-   Only read `references/generator.md` when user explicitly requests "complete mapping table",
-   "detailed rules", or "generator.md version".
-4. Parse the requested country, national team, football figure cue, player role,
-   match style, optional target override, and any explicit Seedance constraints.
-5. Default to the country / national team path. Use recognizable star-player
-   avatar mode only when the user explicitly asks for "像某位真实球员", "能看出是谁",
-   "卡通球星", "Q版球员", or "球星人偶".
-6. Infer a concrete football-compatible target object using the reference
-   mapping table.
-7. Apply the optimized template: embed national team colors in armor/frame
-   contrast, translate jersey features into mechanical elements.
-8. Use explicit timeline structure: [0s] [2s] [4s] [6s] [8s] [10s],
-   each timestamp describes only one main action and one main camera change.
-9. Return the final prompt directly.
+**CRITICAL: Follow the reverse-engineering approach from `../../AGENTS.md`, NOT template filling.**
+
+1. **Infer the target object from the country/team**:
+   - Use `references/generator.md` mapping table or infer from football culture, playing style, national identity
+   - Example: Brazil → samba-style agile striker mech; Germany → precision midfielder mech; Argentina → creative playmaker mech
+
+2. **Analyze the target object's structural features**:
+   - What is the core form? (humanoid player mech vs. football equipment vs. stadium element)
+   - What are the signature components? (legs/boots, torso/jersey, arms, ball-handling mechanisms)
+   - What is the natural deployment logic? (player stance assembly vs. equipment unfolding)
+
+3. **Reverse-engineer the mechanical box**:
+   - Box shape must hint at the target form (humanoid → vertical capsule; equipment → compact case)
+   - Seam layout corresponds to key components (leg sections, torso, arms, head)
+   - Trigger mechanism echoes football theme (football button, whistle knob, trophy emblem)
+   - **National team integration** (CRITICAL):
+     - Extract team colors from jersey → apply to armor/frame contrast
+     - Translate jersey features (stripes, stars, crest) into mechanical elements (NOT as flat decals)
+
+4. **Design the transformation sequence**:
+   - Each timestamp must reflect the target's unique structural logic
+   - NOT a generic 6-step template applied to all teams
+   - Example: Brazilian striker uses agile leg deployment + samba-rhythm motion; German midfielder uses precision torso assembly + tactical stance
+
+5. **Generate the complete prompt** following Seedance 2.0 best practices:
+   - Use explicit timeline: [0s] [2s] [4s] [6s] [8s] [10s]
+   - Each timestamp: one main action + one camera change
+   - Derived from structural analysis, not template filling
+
+6. **Validation check**:
+   - If you remove the country/team name, can a reader guess which team it is from the colors, playing style, and mechanical design alone?
+   - If NO → you're still template filling. Go back to step 1.
 
 ## Notes
 
