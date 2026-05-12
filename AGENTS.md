@@ -14,7 +14,7 @@ UI metadata file, follow this file first.
 - Put detailed generator rules, mappings, examples, and expanded prompts in
   `skills/<skill-name>/references/`.
 - Put cross-skill research and shared prompt-writing knowledge in
-  `shared/references/`.
+  `skills/_shared/`.
 - Treat `agents/openai.yaml` as UI metadata only. It must not redefine skill
   behavior.
 
@@ -26,13 +26,33 @@ UI metadata file, follow this file first.
 
 1. Select the skill from the user's explicit command or requested theme.
 2. Read this `AGENTS.md` before applying any detailed generator rule.
-3. **Analyze the target object first** (see "Reverse Engineering Process" below).
-4. Read the selected skill's `references/generator.md` for domain-specific mappings.
-5. Load expanded prompt examples only when the user asks for examples, full
+3. Read the selected skill's `SKILL.md` only for trigger scope and reference
+   navigation. It must not redefine behavior from this file.
+4. Resolve the **reference-image mode** before generating the final prompt:
+   - If the user attaches images or explicitly requests a reference-image
+     version, use the reference-image version and keep `@Image` role lines.
+   - If the user explicitly requests no-image / text-only / 无图版, use the
+     no-reference-image version, remove `@Image` role lines, and add one short
+     `最终目标：...` appearance line.
+   - If the user has not made the mode clear, ask one concise question before
+     output: `是否使用参考图版？有图我会保留 @Image 角色行；无图我会删除 @Image 行并补最终目标外观特征。`
+   - For batch outputs, ask once and apply the answer to the whole batch unless
+     the user gives per-item modes.
+5. **Analyze the target object first** (see "Reverse Engineering Process" below).
+6. Read the selected skill's references for domain-specific mappings and output
+   shape:
+   - Use `references/generator-optimized.md` as the default compact output
+     contract when it exists.
+   - Always use `references/generator.md` for mappings, target-selection rules,
+     and detailed fallback behavior.
+   - If any reference file conflicts with this `AGENTS.md`, follow this file.
+     In particular, any `@Image` requirement in a reference file applies only
+     to reference-image mode.
+7. Load expanded prompt examples only when the user asks for examples, full
    prompt sets, or numbered prompt outputs.
-6. Load `shared/references/seedance-prompt-research.md` only when prompt
+8. Load `skills/_shared/seedance-prompt-research.md` only when prompt
    structure, quality diagnosis, or cross-skill optimization is needed.
-7. Load `shared/references/completion-rules.md` when diagnosing or editing
+9. Load `skills/_shared/completion-rules.md` when diagnosing or editing
    mechanical-box completion, duration, or ending-state consistency.
 
 ### Reverse Engineering Process
@@ -86,10 +106,37 @@ Organize per Seedance 2.0 best practices, but with content derived from analysis
 - Produce the final usable Seedance prompt or content output unless the user asks
   for analysis, planning, or editing guidance.
 - Preserve the selected skill's output contract from its reference file.
+- Support two prompt modes for every skill:
+  - **参考图版**: include clear `@Image1`, `@Image2`, etc. role assignment
+    lines only for assets the user actually provides or explicitly asks to use.
+  - **无参考图版**: remove all unused `@Image` role lines and replace the lost
+    visual guidance with one concise `最终目标：...` line describing the target's
+    key silhouette, front/head feature, support/limb feature, and signature
+    detail.
+- Do not silently choose between 参考图版 and 无参考图版 when the user has not
+  specified the mode. Ask first, then generate.
+
+### Global Camera, Audio, and Text Rules
+
+These rules apply to every skill and every generated Seedance prompt unless the
+user explicitly requests a different shooting style:
+
+- Use first-person real handheld POV with a one-shot / 一镜到底 feeling.
+- Do not use a locked-off, static, tripod-like, or fixed-camera setup. Preserve
+  small handheld breathing motion, wrist micro-shake, reactive collision shake,
+  and subtle observational view corrections.
+- Timestamps are action progress markers inside the same continuous shot, not
+  edit points. Do not cut, switch angles, reset the camera, jump to a new
+  product-display shot, or use montage language.
+- Keep one main transformation action per beat. Camera language should describe
+  natural handheld reaction or observation, not a new shot.
+- Do not generate subtitles, captions, UI overlays, platform interface elements,
+  or background music. Mechanical contact sounds are allowed only when they
+  support the visible physical action.
 
 ### Prompt Length and Weight Allocation
 
-Based on `shared/references/seedance-prompt-research.md`, Seedance 2.0 performs
+Based on `skills/_shared/seedance-prompt-research.md`, Seedance 2.0 performs
 best with **short, structured prompts in the 50-200 word sweet spot** (约 100-400
 个中文字符). Longer prompts dilute the front half and scatter model attention.
 
@@ -109,7 +156,7 @@ best with **short, structured prompts in the 50-200 word sweet spot** (约 100-4
 - Meta-rules that belong in generator logic, not final prompts
 
 **Timeline format**: Use explicit timestamps `[0s] ... [3s] ... [6s] ...` with
-one main action + one camera move per beat. For completion-critical tasks, also
+one main transformation action + one handheld reaction or observation cue per beat. For completion-critical tasks, also
 preserve stage-based completion nodes from `completion-rules.md`.
 
 **Common traps to avoid** (from research):

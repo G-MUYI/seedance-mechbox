@@ -40,6 +40,14 @@
 /seedance-world-cup-mechbox 巴西
 ```
 
+Skill 激活后的运行顺序由 [AGENTS.md](AGENTS.md) 统一控制。若用户没有明确说明参考图模式，skill 必须先询问：
+
+```
+是否使用参考图版？有图我会保留 @Image 角色行；无图我会删除 @Image 行并补最终目标外观特征。
+```
+
+部署脚本会把根 `AGENTS.md` 镜像到安装目录的 `_shared/AGENTS.md`，保证安装后的 skill 仍能读取同一套运行规则。
+
 ## 📁 项目结构
 
 ```

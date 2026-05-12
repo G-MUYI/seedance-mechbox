@@ -49,7 +49,9 @@ if [ -d "$SOURCE_DIR/_shared" ]; then
     echo -e "${GREEN}[1/2] 复制共享资源 _shared/${NC}"
     rm -rf "$TARGET_DIR/_shared"
     cp -r "$SOURCE_DIR/_shared" "$TARGET_DIR/_shared"
+    cp "$SCRIPT_DIR/AGENTS.md" "$TARGET_DIR/_shared/AGENTS.md"
     echo "  ✓ _shared/ 已复制"
+    echo "  ✓ AGENTS.md 规则源已复制到 _shared/AGENTS.md"
 else
     echo -e "${YELLOW}警告: _shared/ 目录不存在，跳过${NC}"
 fi
