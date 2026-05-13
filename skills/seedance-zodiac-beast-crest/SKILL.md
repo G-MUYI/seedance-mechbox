@@ -13,5 +13,4 @@ Use this skill for the trigger surface and theme described in the frontmatter `d
 
 ## References
 
-- `references/generator-optimized.md`: default output contract and compact prompt template.
-- `references/generator.md`: detailed mappings, target-selection rules, examples, and the fallback source when the user asks for a detailed or full version.
+- `references/generator.md`: full output contract, detailed mappings, target-selection rules, examples, and fallback behavior.

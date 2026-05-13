@@ -230,7 +230,7 @@ prompt or a bullet summary.
 ```
 
 **与研究报告的冲突**：
-研究报告明确指出"短而结构化的提示往往优于长而抒情的提示"，甜点区是 50-200 词。
+历史审查曾认为更短的结构化提示更符合当时的优化方向。
 
 **问题**：AGENTS.md 强制要求"长提示词"，这与 Seedance 2.0 的最佳实践直接矛盾。
 
@@ -258,18 +258,17 @@ AGENTS.md 没有引用研究报告中的权重分配建议，导致各 skill 自
 
 ### 5.1 立即修复（P0）
 
-1. **重构所有提示词模板**，将长度压缩到 200-400 字符（约 100-200 词）
+1. **重构所有提示词模板**，删除冗余元规则并保留完整输出合同
    - 删除所有元规则描述（如"反剧透""强可见而非低权重"）
    - 删除大部分否定约束，只保留 1-2 条关键的
-   - 简化"主体"段落，只保留 3-5 个核心视觉元素
-   - 删除"全局动作语义"的详细描述，改为 1-2 句话
+   - 精简重复的"主体"段落，但保留目标识别、时间轴和物理连续性
+   - 删除重复的"全局动作语义"描述
 
 2. **修改 AGENTS.md 的输出规则**
    ```diff
    - Final Seedance prompts must be long enough for direct use
-   + Final Seedance prompts should follow the 50-200 word sweet spot
-   + identified in seedance-prompt-research.md. Prioritize concrete visual
-   + nouns, camera motion, and timeline structure over detailed constraints.
+   + Final Seedance prompts should follow the selected skill's generator.md
+   + output contract. Compress only when the platform gives a hard limit.
    ```
 
 3. **添加权重分配指导**到 AGENTS.md
@@ -424,7 +423,7 @@ AGENTS.md 没有引用研究报告中的权重分配建议，导致各 skill 自
 
 ### 高风险
 - **用户习惯**：如果用户已经习惯当前的长提示词格式，突然改短可能引起不适
-- **缓解措施**：保留"详细版"作为可选项，默认使用"优化版"
+- **缓解措施**：统一保留完整版本；只有硬字符限制时做结构保留型压缩
 
 ### 中风险
 - **功能完整性**：压缩提示词可能丢失某些细节控制
@@ -440,11 +439,11 @@ AGENTS.md 没有引用研究报告中的权重分配建议，导致各 skill 自
 
 **核心问题**：所有 skills 的提示词长度超标 3-4 倍，权重分配倒置，与 Seedance 2.0 最佳实践存在系统性偏差。
 
-**根本原因**：AGENTS.md 强制要求"长提示词"，与研究报告的"短而结构化"原则矛盾。
+**根本原因**：早期 AGENTS.md 与研究报告的长度取向不一致。
 
 **解决方案**：
 1. 修改 AGENTS.md，引入研究报告的权重分配指导
-2. 重构所有提示词模板，压缩到 200-400 字符
+2. 重构所有提示词模板，删除冗余元规则并保留完整输出合同
 3. 统一时间轴格式，添加参考素材角色分配
 4. 简化否定约束，改为正向守则
 

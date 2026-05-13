@@ -12,6 +12,15 @@
 
 ---
 
+## [未发布] - 2026-05-13
+
+### Removed - 全局
+- 移除所有 skills 中独立的短版/优化版提示词模板。
+- 所有 `SKILL.md` 入口统一只指向 `references/generator.md` 作为完整输出合同。
+- `AGENTS.md` 和 `README.md` 改为要求完整合同优先；仅在平台硬字符限制下做结构保留型压缩。
+
+---
+
 ## [未发布] - 2026-05-12
 
 ### Changed - 全局 🔄 **重大架构改进**
@@ -66,7 +75,7 @@
 ### 2026-05-11
 - **Fixed** - seedance-country-mechbox, seedance-mechbox, seedance-world-cup-mechbox
   - 优化 generator.md 提示词结构
-  - 新增 generator-optimized.md 版本
+  - 曾新增短版模板，后续已在 2026-05-13 移除
 
 ### 2026-05-08
 - **Added** - seedance-world-cup-mechbox

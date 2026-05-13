@@ -41,10 +41,9 @@ UI metadata file, follow this file first.
 5. **Analyze the target object first** (see "Reverse Engineering Process" below).
 6. Read the selected skill's references for domain-specific mappings and output
    shape:
-   - Use `references/generator-optimized.md` as the default compact output
-     contract when it exists.
-   - Always use `references/generator.md` for mappings, target-selection rules,
-     and detailed fallback behavior.
+   - Use `references/generator.md` as the authoritative output contract,
+     mapping source, target-selection rule source, and fallback behavior source.
+   - Do not use or recreate separate short-version / optimized prompt templates.
    - If any reference file conflicts with this `AGENTS.md`, follow this file.
      In particular, any `@Image` requirement in a reference file applies only
      to reference-image mode.
@@ -136,23 +135,25 @@ user explicitly requests a different shooting style:
 
 ### Prompt Length and Weight Allocation
 
-Based on `skills/_shared/seedance-prompt-research.md`, Seedance 2.0 performs
-best with **short, structured prompts in the 50-200 word sweet spot** (约 100-400
-个中文字符). Longer prompts dilute the front half and scatter model attention.
+Default to the selected skill's full output contract in `references/generator.md`.
+Do not create, load, or output separate short-version prompt templates. If the
+user or platform gives a hard character limit, reduce wording only from the full
+contract and preserve the required structure, timeline, transformation logic,
+material continuity, and key constraints.
 
-**Weight allocation priority** (from research):
+**Weight allocation priority when a hard limit requires compression**:
 1. Reference asset job assignment (22%) - @Image/@Video/@Audio with clear roles
 2. Task description: subject, action, scene (18%)
-3. Camera & timeline structure (17%) - use [0s] [3s] [6s] format, 3-4 beats for 5-10s
+3. Camera & timeline structure (17%) - preserve the selected skill's required timestamp beats
 4. Style & lighting (9%)
 5. Context & background (8%)
-6. Constraints (7%) - positive guardrails first, max 1-2 short negative items
+6. Constraints (7%) - positive guardrails first, max 1-2 necessary negative items
 7. Parameters (7%)
 
-**Avoid over-investing in**:
-- Detailed mechanical part descriptions (keep to 3-5 core visual elements)
-- Long action semantics rules (1-2 sentences max)
-- Dense negative constraint lists (use positive guardrails instead)
+**When compressing under a hard limit, avoid**:
+- Removing required timeline stages or completion nodes
+- Dropping physical source openings, mass continuity, or target identity anchors
+- Dense negative constraint lists; use positive guardrails instead
 - Meta-rules that belong in generator logic, not final prompts
 
 **Timeline format**: Use explicit timestamps `[0s] ... [3s] ... [6s] ...` with
@@ -162,7 +163,7 @@ preserve stage-based completion nodes from `completion-rules.md`.
 **Common traps to avoid** (from research):
 - Packing too many actions into a single beat
 - Using vague adjectives (epic, beautiful) instead of camera/lighting terms
-- Long prompts where the back half dilutes the front half
+- Truncating the prompt so the final form, physical continuity, or ending state becomes ambiguous
 
 ### Skill-Specific Rules
 
