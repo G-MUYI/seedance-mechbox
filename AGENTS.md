@@ -1,196 +1,171 @@
-# Seedance Skills Rules
+# Seedance Skills 规则
 
-This file is the authoritative rule source for every skill in this repository.
-If this file conflicts with any `skills/*/SKILL.md`, `skills/*/references/*`, or
-UI metadata file, follow this file first.
+本文件是本仓库中所有 skill 的权威规则来源。如果本文件与任何 `skills/*/SKILL.md`、`skills/*/references/*` 或 UI 元数据文件冲突，请优先遵循本文件。
 
-## Repository Shape
+## 仓库结构
 
-- Put installable skills in `skills/<skill-name>/`.
-- Keep one top-level generator template or slash command as one installable
-  skill. Do not collapse command-level templates into hidden variants.
-- Keep each `SKILL.md` concise. It is an entrypoint, trigger surface, and
-  navigation guide, not a full prompt library.
-- Put detailed generator rules, mappings, examples, and expanded prompts in
-  `skills/<skill-name>/references/`.
-- Put cross-skill research and shared prompt-writing knowledge in
-  `skills/_shared/`.
-- Treat `agents/openai.yaml` as UI metadata only. It must not redefine skill
-  behavior.
+- 将可安装的 skill 放在 `skills/<skill-name>/` 中
+- 保持一个顶级生成器模板或斜杠命令作为一个可安装的 skill。不要将命令级模板折叠成隐藏变体
+- 保持每个 `SKILL.md` 简洁。它是入口点、触发面和导航指南，而不是完整的提示词库
+- 将详细的生成规则、映射、示例和扩展提示词放在 `skills/<skill-name>/references/` 中
+- 将跨 skill 研究和共享提示词编写知识放在 `skills/_shared/` 中
+- 将 `agents/openai.yaml` 仅视为 UI 元数据。它不得重新定义 skill 行为
 
-## Skill Runtime Workflow
+## Skill 运行时工作流
 
-### Core Principle: Reverse Engineering from Target Object
+### 核心原则：从目标对象反向工程
 
-**DO NOT套用固定模板填空。** Instead, analyze the target object's structural features and reverse-engineer the mechanical box design.
+**不要套用固定模板填空。** 相反，分析目标对象的结构特征，反向设计机械盒子。
 
-1. Select the skill from the user's explicit command or requested theme.
-2. Read this `AGENTS.md` before applying any detailed generator rule.
-3. Read the selected skill's `SKILL.md` only for trigger scope and reference
-   navigation. It must not redefine behavior from this file.
-4. Resolve the **reference-image mode** before generating the final prompt:
-   - If the user attaches images or explicitly requests a reference-image
-     version, use the reference-image version and keep `@Image` role lines.
-   - If the user explicitly requests no-image / text-only / 无图版, use the
-     no-reference-image version, remove `@Image` role lines, and add one short
-     `最终目标：...` appearance line.
-   - If the user has not made the mode clear, ask one concise question before
-     output: `是否使用参考图版？有图我会保留 @Image 角色行；无图我会删除 @Image 行并补最终目标外观特征。`
-   - For batch outputs, ask once and apply the answer to the whole batch unless
-     the user gives per-item modes.
-5. **Analyze the target object first** (see "Reverse Engineering Process" below).
-6. Read the selected skill's references for domain-specific mappings and output
-   shape:
-   - Use `references/generator.md` as the authoritative output contract,
-     mapping source, target-selection rule source, and fallback behavior source.
-   - Do not use or recreate separate short-version / optimized prompt templates.
-   - If any reference file conflicts with this `AGENTS.md`, follow this file.
-     In particular, any `@Image` requirement in a reference file applies only
-     to reference-image mode.
-7. Load expanded prompt examples only when the user asks for examples, full
-   prompt sets, or numbered prompt outputs.
-8. Load `skills/_shared/seedance-prompt-research.md` only when prompt
-   structure, quality diagnosis, or cross-skill optimization is needed.
-9. Load `skills/_shared/completion-rules.md` when diagnosing or editing
-   mechanical-box completion, duration, or ending-state consistency.
+1. 从用户的明确命令或请求的主题中选择 skill
+2. 在应用任何详细生成规则之前，先阅读此 `AGENTS.md`
+3. 仅读取所选 skill 的 `SKILL.md` 以了解触发范围和参考导航。它不得重新定义此文件中的行为
+4. 在生成最终提示词之前，先确定**参考图模式**：
+   - 如果用户附上图像或明确要求参考图版本，使用参考图版本并保留 `@Image` 角色行
+   - 如果用户明确要求无图版/纯文本版，使用无参考图版本，删除 `@Image` 角色行，并添加一条简短的 `最终目标：...` 外观描述行
+   - 如果用户未明确模式，在输出前先问一个简洁的问题：`是否使用参考图版？有图我会保留 @Image 角色行；无图我会删除 @Image 行并补最终目标外观特征。`
+   - 对于批量输出，先问一次，然后将答案应用于整个批次，除非用户给出逐项模式
+5. **首先分析目标对象**（见下方"反向工程流程"）
+6. 读取所选 skill 的参考文件以获取领域特定的映射和输出形式：
+   - 使用 `references/generator.md` 作为权威输出合同、映射来源、目标选择规则来源和回退行为来源
+   - 不要使用或重新创建单独的短版/优化提示词模板
+   - 如果任何参考文件与此 `AGENTS.md` 冲突，请遵循此文件。特别是，参考文件中的任何 `@Image` 要求仅适用于参考图模式
+7. 仅当用户要求示例、完整提示词集或编号提示词输出时，才加载扩展提示词示例
+8. 仅当需要提示词结构、质量诊断或跨 skill 优化时，才加载 `skills/_shared/seedance-prompt-research.md`
+9. 当诊断或编辑机械盒完成、时长或结束状态一致性时，加载 `skills/_shared/completion-rules.md`
 
-### Reverse Engineering Process
+### 反向工程流程
 
-Before generating any prompt, follow this analysis:
+在生成任何提示词之前，请遵循以下分析：
 
-**Step 1: Analyze Target Object Structure**
+**步骤 1：分析目标对象结构**
 
-Identify:
-- **Overall form type**: elongated (dragon, truck) / spherical (crab, tank) / tall (giraffe, crane) / spreading (bird, plane) / multi-legged (spider, octopus)
-- **Key components**: head/front, torso/body, limbs/supports, tail/rear, appendages (wings/antennae/equipment)
-- **Movement/deployment logic**: serpentine (spine segments unlock sequentially) / enclosing (shell opens from center) / folding (wings unfold from storage) / telescoping (nested tubes extend) / assembly (parts converge from different directions)
+识别：
+- **整体形态类型**：细长形（龙、卡车）/ 球形（螃蟹、坦克）/ 高大型（长颈鹿、起重机）/ 展开形（鸟、飞机）/ 多足形（蜘蛛、章鱼）
+- **关键部件**：头部/前部、躯干/主体、四肢/支撑、尾部/后部、附肢（翅膀/天线/设备）
+- **运动/展开逻辑**：蜿蜒式（脊椎节段依次解锁）/ 包围式（外壳从中心打开）/ 折叠式（翅膀从存储中展开）/ 伸缩式（嵌套管伸出）/ 组装式（部件从不同方向汇聚）
 
-**Step 2: Reverse-Engineer the Mechanical Box**
+**步骤 2：反向设计机械盒**
 
-Design the initial box based on target features:
-- **Box shape**: must hint at final form (elongated target → rectangular box with spine seams; spherical target → polyhedron shell with equator split)
-- **Seam layout**: each key component corresponds to a source opening
-- **Trigger mechanism**: thematically related to target (dragon → dragon-scale button; truck → steering wheel knob)
-- **Front identification**: gear window pattern previews final form
+根据目标特征设计初始盒子：
+- **盒子形状**：必须暗示最终形态（细长目标 → 带脊椎接缝的矩形盒；球形目标 → 带赤道分割的多面体外壳）
+- **接缝布局**：每个关键部件对应一个源开口
+- **触发机制**：与目标主题相关（龙 → 龙鳞按钮；卡车 → 方向盘旋钮）
+- **正面标识**：齿轮窗图案预览最终形态
 
-**Step 3: Design Transformation Sequence**
+**步骤 3：设计变形序列**
 
-**CRITICAL**: Transformation order must follow the target's structural logic, NOT a generic template.
+**关键**：变形顺序必须遵循目标的结构逻辑，而不是通用模板。
 
-Timeline design (6 keyframes):
-- `[0s]` Trigger & drop - action echoes target theme
-- `[2s]` Stage 1: Establish support/foundation (varies by form type)
-- `[4s]` Stage 2: Main body takes shape (varies by form type)
-- `[6s]` Stage 3: Key components deploy
-- `[8s]` Stage 4: Detail refinement
-- `[10s]` Stage 5: Lock and finalize - signature action (dragon tail whip / crab claw snap / truck horn)
+时间线设计（6 个关键帧）：
+- `[0s]` 触发与下落 - 动作呼应目标主题
+- `[2s]` 阶段 1：建立支撑/基础（因形态类型而异）
+- `[4s]` 阶段 2：主体成形（因形态类型而异）
+- `[6s]` 阶段 3：关键部件展开
+- `[8s]` 阶段 4：细节细化
+- `[10s]` 阶段 5：锁定并最终确定 - 标志性动作（龙尾甩动 / 蟹钳咬合 / 卡车鸣笛）
 
-**Form-Specific Transformation Patterns** (reference only, adapt to actual target):
+**形态特定变形模式**（仅供参考，根据实际目标调整）：
 
-| Form Type | Box Feature | Transformation Logic |
-|-----------|-------------|---------------------|
-| Elongated (dragon, snake, train, truck) | Rectangular with spine seams | Spine segments unlock in wave → supports deploy → head extends → tail finalizes |
-| Spherical/Block (crab, turtle, tank) | Polyhedron shell, equator split or top petals | Shell/lid opens → support legs extend from sides → head/turret rises → claws/arms deploy |
-| Tall (giraffe, crane, lighthouse) | Vertical cylinder, thick base | Base stabilizes first → body rises in telescoping sections → neck/arm extends segment by segment → head/top finalizes |
-| Spreading (bird, plane, kite) | Flat box with side fold slots | Central axis/fuselage fixes → wings unfold from sides → head/nose extends → tail/tail feathers deploy last |
-| Multi-legged (spider, octopus, multi-axle vehicle) | Central block + peripheral hatches | Legs extend in batches (symmetrical) → central body stabilizes → head/cockpit rises → tentacles/arms deploy sequentially |
+| 形态类型 | 盒子特征 | 变形逻辑 |
+|---------|---------|---------|
+| 细长形（龙、蛇、火车、卡车） | 带脊椎接缝的矩形 | 脊椎节段波浪式解锁 → 支撑展开 → 头部伸出 → 尾部最终确定 |
+| 球形/块状（螃蟹、乌龟、坦克） | 多面体外壳，赤道分割或顶部花瓣 | 外壳/盖子打开 → 支撑腿从侧面伸出 → 头部/炮塔升起 → 钳子/手臂展开 |
+| 高大型（长颈鹿、起重机、灯塔） | 垂直圆柱体，厚底座 | 底座先稳定 → 主体以伸缩节段升起 → 颈部/臂逐段伸出 → 头部/顶部最终确定 |
+| 展开形（鸟、飞机、风筝） | 带侧折叠槽的扁平盒 | 中心轴/机身固定 → 翅膀从侧面展开 → 头部/机头伸出 → 尾/尾羽最后展开 |
+| 多足形（蜘蛛、章鱼、多轴车辆） | 中心块 + 外围舱口 | 腿分批（对称）伸出 → 中心体稳定 → 头部/驾驶舱升起 → 触手/手臂依次展开 |
 
-**Step 4: Generate Complete Prompt**
+**步骤 4：生成完整提示词**
 
-Organize per Seedance 2.0 best practices, but with content derived from analysis, not template filling.
+按照 Seedance 2.0 最佳实践组织，但内容来自分析，而不是模板填空。
 
-## Output Rules
+## 输出规则
 
-- Default to Chinese explanations for Chinese user requests.
-- Produce the final usable Seedance prompt or content output unless the user asks
-  for analysis, planning, or editing guidance.
-- Preserve the selected skill's output contract from its reference file.
-- Support two prompt modes for every skill:
-  - **参考图版**: include clear `@Image1`, `@Image2`, etc. role assignment
-    lines only for assets the user actually provides or explicitly asks to use.
-  - **无参考图版**: remove all unused `@Image` role lines and replace the lost
-    visual guidance with one concise `最终目标：...` line describing the target's
-    key silhouette, front/head feature, support/limb feature, and signature
-    detail.
-- Do not silently choose between 参考图版 and 无参考图版 when the user has not
-  specified the mode. Ask first, then generate.
+- 对于中文用户请求，默认使用中文解释
+- 生成最终可用的 Seedance 提示词或内容输出，除非用户要求分析、规划或编辑指导
+- 保留所选 skill 从其参考文件中获得的输出合同
+- 为每个 skill 支持两种提示词模式：
+  - **参考图版**：仅对用户实际提供或明确要求使用的资产包含清晰的 `@Image1`、`@Image2` 等角色分配行
+  - **无参考图版**：删除所有未使用的 `@Image` 角色行，并用一条简洁的 `最终目标：...` 行替换失去的视觉指导，描述目标的关键轮廓、正面/头部特征、支撑/肢体特征和标志性细节
+- 当用户未明确模式时，不要在参考图版和无参考图版之间做出沉默选择。先问，再生成
 
-### Global Camera, Audio, and Text Rules
+### 全局镜头、音频和文本规则
 
-These rules apply to every skill and every generated Seedance prompt unless the
-user explicitly requests a different shooting style:
+**【绝对优先级第一条】** 这些规则必须应用于每一个 skill 和每一条生成的 Seedance 提示词，除非用户明确要求不同的拍摄风格。
 
-- Use first-person real handheld POV with a one-shot / 一镜到底 feeling.
-- Do not use a locked-off, static, tripod-like, or fixed-camera setup. Preserve
-  small handheld breathing motion, wrist micro-shake, reactive collision shake,
-  and subtle observational view corrections.
-- Timestamps are action progress markers inside the same continuous shot, not
-  edit points. Do not cut, switch angles, reset the camera, jump to a new
-  product-display shot, or use montage language.
-- Keep one main transformation action per beat. Camera language should describe
-  natural handheld reaction or observation, not a new shot.
-- Do not generate subtitles, captions, UI overlays, platform interface elements,
-  or background music. Mechanical contact sounds are allowed only when they
-  support the visible physical action.
+**一、镜头连续性（最重要，绝对不能违反）**
+- 全程必须是**一条完整的连续第一人称真实手持拍摄**，没有任何镜头跳切、剪辑、切换角度、重置机位或跳转到新的展示画面
+- 所有时间轴/阶段标记只是**同一连续镜头内的动作进度点**，绝对不是剪辑点或分镜点
+- 不能出现任何暗示镜头切换的表述，如「恢复到连续状态」「最终展示画面」「切到新角度」等
 
-### Prompt Length and Weight Allocation
+**二、手持拍摄真实感**
+- 使用第一人称真实手持 POV，有一镜到底的感觉
+- 不要使用固定三脚架、完全静止或锁定的机位
+- 保留真实的手持呼吸起伏、腕部微小抖动、反应性碰撞震动和细微的观察式视线修正
+- 允许低速度、小幅度的观察式微运镜：轻微前后位移、轻微左右漂移、轻微俯仰修正、轻微弧线观察
+- 运镜幅度始终很小，像真人站在桌前手持设备观察一个物体，整体构图保持稳定
 
-Default to the selected skill's full output contract in `references/generator.md`.
-Do not create, load, or output separate short-version prompt templates. If the
-user or platform gives a hard character limit, reduce wording only from the full
-contract and preserve the required structure, timeline, transformation logic,
-material continuity, and key constraints.
+**三、声音与文本限制**
+- 不要生成字幕、标题、UI 覆盖层、平台界面元素或背景音乐
+- 仅保留支持可见物理动作的真实机械接触声
 
-**Weight allocation priority when a hard limit requires compression**:
-1. Reference asset job assignment (22%) - @Image/@Video/@Audio with clear roles
-2. Task description: subject, action, scene (18%)
-3. Camera & timeline structure (17%) - preserve the selected skill's required timestamp beats
-4. Style & lighting (9%)
-5. Context & background (8%)
-6. Constraints (7%) - positive guardrails first, max 1-2 necessary negative items
-7. Parameters (7%)
+**四、每一拍的镜头语言**
+- 每一拍只写一个主要变形动作
+- 镜头语言只描述自然的手持反应或观察，绝不描述新的镜头或切镜
 
-**When compressing under a hard limit, avoid**:
-- Removing required timeline stages or completion nodes
-- Dropping physical source openings, mass continuity, or target identity anchors
-- Dense negative constraint lists; use positive guardrails instead
-- Meta-rules that belong in generator logic, not final prompts
+### 提示词长度和权重分配（基于 Seedance 2.0 研究报告）
 
-**Timeline format**: Use explicit timestamps `[0s] ... [3s] ... [6s] ...` with
-one main transformation action + one handheld reaction or observation cue per beat. For completion-critical tasks, also
-preserve stage-based completion nodes from `completion-rules.md`.
+**【核心原则】** 提示词甜点区在 **50-200 词** 之间（带参考素材的 I2V/R2V 可以更短）。根据研究报告的权重分配：
 
-**Common traps to avoid** (from research):
-- Packing too many actions into a single beat
-- Using vague adjectives (epic, beautiful) instead of camera/lighting terms
-- Truncating the prompt so the final form, physical continuity, or ending state becomes ambiguous
+| 要素 | 权重 | 优先级 |
+|------|------|--------|
+| 参考素材角色分配 | 22% | 最高 - 必须放在最前面 |
+| 任务描述（主体/动作/场景） | 18% | 高 |
+| 镜头/时间结构 | 17% | 高 - 每拍只放一个主动作和一个主镜头 |
+| 风格/灯光 | 9% | 中 |
+| 上下文/背景 | 8% | 中 |
+| 约束（正向 guardrails 优先） | 7% | 中 - 最多 1-2 条必要负向项 |
+| 参数 | 7% | 中 |
 
-### Skill-Specific Rules
+**压缩时的优先级**（按保留顺序）：
+1. 参考素材角色分配（22%）- @Image/@Video/@Audio 必须有清晰职责
+2. 任务描述：主体、动作、场景（18%）- 简洁准确，不要冗余
+3. 镜头/时间结构（17%）- 保留每个 beat 一个主动作，不要过载
+4. 风格/灯光（9%）- 用具体摄影术语代替模糊形容词
+5. 约束（7%）- 正向 guardrails 优先，避免密集负向列表
+6. 其他 - 在不影响前 5 项的前提下可精简
 
-- Default to the selected skill's full output contract. Most skills output a
-  detailed prompt, but `seedance-world-cup-mechbox` defines a core-skeleton
-  full prompt: preserve its required camera, subject, timeline, mechanical,
-  physical-continuity, and constraint sections without redundant expansion.
-  Do not create ad hoc summaries outside the selected skill's reference file.
-- Prefer concrete visual nouns, physical transformation beats, camera motion,
-  material details, lighting, and environment cues over abstract adjectives.
-- Keep one-shot mechanical transformation prompts coherent from opening state to
-  final reveal.
-- If user input is incomplete, choose reasonable defaults from the selected
-  skill's mapping table and mention assumptions briefly.
-- Do not duplicate long reference content in `SKILL.md`.
+**【必须避免的陷阱】**（来自研究报告）：
+- ❌ 单个 beat 里塞太多动作和镜头 → ✅ 每拍只放一个主动作
+- ❌ 用 "epic、beautiful、cool" 这类模糊形容词 → ✅ 用具体摄影/灯光术语
+- ❌ 提示太长、修辞太多，后半段把前半段冲淡 → ✅ 50-200 词甜点区
+- ❌ 密集负向约束列表 → ✅ 正向 guardrails 优先，再加 1-2 条必要负向项
 
-## Maintenance Rules
+**时间轴格式**：用简洁的时间戳 `[0s] ... [3s] ... [6s] ...`，每 beat 只写**一个主要变形动作** + **一个手持反应/观察提示**。
 
-- New skill folder names must use lowercase letters, digits, and hyphens only.
-- New skill frontmatter must contain only `name` and `description`.
-- Long examples belong in `references/`, not in `SKILL.md`.
-- Shared rules belong here first. Skill-specific exceptions belong in that
-  skill's reference file.
+**默认输出策略**：
+- 优先输出 **精简优化版**（≈150-200 中文字符）
+- 仅在用户明确要求 `--full` 或 `--完整版` 时才输出旧的超长版
+- 如平台有字符上限，严格按上述权重分配优先级精简
 
-## Skill Inventory
+### Skill 特定规则
 
-This repository currently contains ten installable skills:
+- 默认遵循所选 skill 的完整输出合同。大多数 skill 输出详细提示词，但 `seedance-world-cup-mechbox` 定义了核心骨架完整提示词：保留其所需的镜头、主体、时间轴、机械、物理连续性和约束部分，无需冗余扩展。不要在所选 skill 的参考文件之外创建临时摘要
+- 优先使用具体的视觉名词、物理变形节拍、镜头运动、材质细节、灯光和环境线索，而不是抽象形容词
+- 保持一次性机械变形提示词从打开状态到最终揭示的连贯性
+- 如果用户输入不完整，从所选 skill 的映射表中选择合理的默认值，并简要提及假设
+- 不要在 `SKILL.md` 中复制冗长的参考内容
+
+## 维护规则
+
+- 新 skill 文件夹名称必须仅使用小写字母、数字和连字符
+- 新 skill 前置元数据必须仅包含 `name` 和 `description`
+- 长示例属于 `references/`，不属于 `SKILL.md`
+- 共享规则首先放在这里。skill 特定的例外属于该 skill 的参考文件
+
+## Skill 清单
+
+本仓库目前包含十个可安装的 skill：
 
 - `seedance-mechbox`
 - `seedance-american-truckbox`
