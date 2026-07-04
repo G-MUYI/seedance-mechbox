@@ -12,6 +12,36 @@
 
 ---
 
+## [未发布] - 2026-07-04
+
+### Changed - 全局 🔧 **项目结构模块化重构**
+
+- **Zodiac Beast 变体去重**
+  - 新增 `skills/_shared/zodiac-beast-variant-base.md`，提取 bust/crest/diorama/mask 四个变体 generator 的共享内容：主体外壳特征表（12 行 × 4 文件 → 1 文件）、外壳随机化规则、共享输出段落（镜头、场景、人物、全局动作语义、触发/落桌阶段、关键限制通用句、扩写规则通用部分）
+  - 四个变体 generator.md 精简为只包含变体专属内容（触发条件、映射表专属列、展开段、终态、注意事项），共减少约 320 行重复内容
+  - 原因：同一段文字在 4 个文件中逐字重复，修改一处需同步改四处，维护成本高且容易遗漏
+
+- **AGENTS.md 模块化拆分**
+  - 新增 `skills/_shared/camera-audio-rules.md`（镜头连续性、手持真实感、声音限制、每拍镜头语言）
+  - 新增 `skills/_shared/prompt-weight-rules.md`（权重分配表、压缩优先级、避免陷阱、时间轴格式、默认输出策略）
+  - `AGENTS.md` 从 ~184 行精简到 ~95 行，新增「共享模块索引」表明确每个共享文件的职责和加载时机
+  - 原因：AGENTS.md 承担 8+ 种职责，过长且不同关注点耦合，拆分后每个模块文件专注一个关注点
+
+- **消除 AGENTS.md 与 reverse-engineering-template.md 的内容重叠**
+  - AGENTS.md 中的「反向工程流程」详细四步分析和五种形态类型表格已删除，改为引用 `skills/_shared/reverse-engineering-template.md`
+  - 原因：两个文件包含几乎相同的倒推分析内容，修改一处容易忘改另一处
+
+- **docs/ 陈旧文件归档**
+  - 将一次性审计和修复跟踪文档移至 `docs/archive/`：audit-report.md、skill-audit-report.md、reverse-engineering-audit.md、fix-progress.md、fixes.md
+  - 保留有长期价值的 changelog.md、image-vs-no-image-guide.md、reverse-engineering-examples.md
+  - 原因：这些文件是 2026-05-12 架构转型时的一次性产物，作为日常参考已过时
+
+- **seedance-prompt-research.md 标注归档定位**
+  - 在文件头部添加归档说明，明确其核心结论已提取到 `prompt-weight-rules.md`，本文件仅在质量诊断或跨 skill 优化时加载
+  - 原因：320 行研究报告中的实操结论已被复制到 AGENTS.md（现已提取为独立模块），运行时无需加载全文
+
+---
+
 ## [未发布] - 2026-06-14
 
 ### Changed - 全局
